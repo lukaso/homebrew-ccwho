@@ -1,8 +1,8 @@
 class Ccwho < Formula
   desc "Which Claude Code session needs you, and what it is about"
   homepage "https://github.com/lukaso/ccwho"
-  url "https://github.com/lukaso/ccwho/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "770bf20f393ab05f62c42880e5a2088808791f49bd65d76ec4a508bc0df762b1"
+  url "https://github.com/lukaso/ccwho/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "b394d7a31f152bf2dae181e8d751b75854c6bcefba3712bf860aec36f3c5cacb"
   license "MIT"
 
   depends_on :macos
@@ -11,12 +11,11 @@ class Ccwho < Formula
 
   def install
     # ccwho finds its own files beside its real path, so they stay together in
-    # libexec and only the two commands are linked into bin. The tests stay out.
+    # libexec and only the command is linked into bin. The tests stay out.
     libexec.install Dir["*.py"].reject { |f| f.start_with?("test_") }
     libexec.install "jump.applescript", "install-handler.sh",
                     "com.lukaso.ccwho.save.plist.template"
     bin.install_symlink libexec/"ccwho.py" => "ccwho"
-    bin.install_symlink libexec/"ccgate.py" => "ccgate"
   end
 
   test do
@@ -28,6 +27,7 @@ class Ccwho < Formula
     assert_path_exists File.join(here, "com.lukaso.ccwho.save.plist.template")
     assert_path_exists File.join(here, "ccwho_ui.py")
     refute_path_exists File.join(here, "test_ccwho.py")
-    shell_output("#{bin}/ccgate --status")
+    # ccgate was removed in 0.2.0
+    refute_path_exists bin/"ccgate"
   end
 end
