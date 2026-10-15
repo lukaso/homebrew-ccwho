@@ -1,8 +1,8 @@
 class Ccwho < Formula
   desc "Which Claude Code session needs you, and what it is about"
   homepage "https://github.com/lukaso/ccwho"
-  url "https://github.com/lukaso/ccwho/archive/refs/tags/v0.6.0.tar.gz"
-  sha256 "d84accce0da2160cb3d26f83daa3360d57440f4b1cb74f64df5272c18fa75793"
+  url "https://github.com/lukaso/ccwho/archive/refs/tags/v0.7.0.tar.gz"
+  sha256 "a509d08b8ad875f1d75f5e762f87443df585a34288397862b255bf42c4c5d32d"
   license "MIT"
 
   depends_on :macos
